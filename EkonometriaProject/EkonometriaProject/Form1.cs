@@ -30,7 +30,12 @@ namespace EkonometriaProject
 
         private void zaladujPlikMenuItem_Click(object sender, EventArgs e)
         {
-           
+            /*
+            double result = MathNet.Numerics.ExcelFunctions.TInv(0.02, 14);
+           // double aa = StudentT.Sample(0, 1, 30);
+            string v = result.ToString();
+            MessageBox.Show(v);
+            */
 
             if (zaladujPlikFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -88,24 +93,23 @@ namespace EkonometriaProject
 
           //-------------------------------
 
-                    
+                    //--Z tablic rozkładu t-Studenta odczytujemy wartość statystyki przy poziomie istotności 0,05 oraz n-2
                     int s_swobody = daneStat[0].Count - 2;
                     double alfa = 0.05;
 
-                    
+                    //--oraz n-2, czyli np. 32-2 = 30 stopniach swobody
                     double result = MathNet.Numerics.ExcelFunctions.TInv(alfa, s_swobody);
 
 
-                   
+                    //-----wartość krytyczna współczynnika korelacji 
                     double r_alfa;
 
                     r_alfa = Math.Sqrt((Math.Pow(result, 2)) / (s_swobody + (Math.Pow(result, 2))));
 
-                    
+                     //---zastepowanie zerem współczynników korelacji z R1 które są nieistotne
                
 
-                    //r[0,2] = 0.1;
-                   //r[0, 1] = 0.1;
+                  
                     for (int i = 0; i < r.GetLength(0); i++)
                     {
 
@@ -121,7 +125,7 @@ namespace EkonometriaProject
                                
                             }
 
-                          
+                            //--wszystko co pod przekątną to 0
                             if (j < i)
                             {
                                 r[i, j] = 0;
@@ -132,18 +136,18 @@ namespace EkonometriaProject
                     }
 
 
-                    
+                    //z jakimi elementami w grafie powiązań łączy się np. x1 
                     for (int i = 0; i < r.GetLength(0); i++)
                     {
 
                         for (int j = 0; j < r.GetLength(0); j++)
                         {
-                          
+                            //nie pobieraj 1 z przekątnej i nie pobieraj 0
                             if (j != i && (r[i, j]!=0))
                             {
                                
-                                graf[j].Add(r[i, j]);
-                                graf[i].Add(r[i, j]);
+                                graf[j].Add(i+1);
+                                graf[i].Add(j+1);
                             }
 
 
@@ -152,24 +156,28 @@ namespace EkonometriaProject
 
                     }
 
-                   
+                    //--wyświeltenie tablicy powiązań w richtextbox1
                     int licznik = 0;
+
+                     
+
+                           richTextBox1.AppendText("Powiązania między zmiennymi objaśniającymi: "+"\n"); 
                     foreach (var x in graf)
                     {
                         licznik++;
                         
-                        richTextBox1.AppendText(licznik.ToString()+":  "); 
+                        richTextBox1.AppendText("x"+licznik.ToString()+" "+"z"+":  "); 
                         foreach (var y in x)
                         {
             
-                            richTextBox1.AppendText(y.ToString()+ ";  "); 
+                            richTextBox1.AppendText("x"+y.ToString()+ ";  "); 
 
                         }
                         richTextBox1.AppendText("\n"); 
                     }
 
 
-                
+                    //--- policzenie powiązań każdego x
                     for (int i = 0; i < graf.Count;i++ )
                     {
                        int z=graf[i].Count;
@@ -182,24 +190,29 @@ namespace EkonometriaProject
 
 
                     double max= ile_powiazan.Max();
-                    richTextBox1.AppendText( "\n "); 
+                    //richTextBox1.AppendText( "\n "); 
 
-                   
+                    //--wyszukanie ile jest x`ów o maxymalnej liczbie powiązań
                     for (int i = 0; i < ile_powiazan.Count; i++)
                     {
 
-                        
-                        if(ile_powiazan[i]<max)
+                        // --zmienna izolowana zawsze wchodzi do modelu
+                        if (ile_powiazan[i] == 0)
                         {
-                            
+                            zwyciezcy.Add(i + 1);
+                        }     
+                        //---jeśli nie jest max to ustaw -5 (czyli całkowicie wyelminuj x z gry,bo korelacja chyba od -1 do 1)
+                        else if(ile_powiazan[i]<max)
+                        {
+                            //--korelacja od -1 do 1?
                             ile_powiazan[i] = -5;
 
                        }
                         else{
 
-                           
+                            //--- w przeciwnym wypadku podstaw pod powiązanie odpowiednik z R0
                              ile_powiazan[i]=r0[i];
-                             richTextBox1.AppendText(ile_powiazan[i].ToString() + ";  "); 
+                             //richTextBox1.AppendText(ile_powiazan[i].ToString() + ";  "); 
                         }
                     }
 
@@ -208,12 +221,13 @@ namespace EkonometriaProject
                     max = ile_powiazan.Max();
                     richTextBox1.AppendText("\n "); 
 
-                  
+                    //wyszukaj maxymalną wartość współczynnika korelacji z x które się jeszcze liczą
                     for (int i = 0; i < ile_powiazan.Count; i++)
                     {
-                        if(ile_powiazan[i]>=max)
+                        //--jeśli maxymalna liczba powiązań to 0, to x został już wcześniej dodany do zwyciezcy
+                        if (ile_powiazan[i] >= max && ile_powiazan[i] != 0) //--!!!!!--
                         {
-                         
+                            //---żeby wskazać zwyciezcę numerujemy kolumny 1,2,3,4 a nie 0,1,2,3
                            
                             zwyciezcy.Add(i + 1);
                           
@@ -221,15 +235,17 @@ namespace EkonometriaProject
 
                     }
 
-                   
+
+                    
+                    richTextBox1.AppendText("Do modelu zostaną zakwalifikowane zmienne: "); 
                     foreach(var x in zwyciezcy)
                     {
-
-                        richTextBox1.AppendText("Numery zwycięskich kolumn: " + x.ToString() + ";  "); 
+                        richTextBox1.AppendText("x"+ x.ToString() + ";  "); 
+                        
                     }
                     
 
-                   
+             
 
                     
 
