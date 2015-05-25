@@ -20,7 +20,7 @@ namespace EkonometriaProject
         public List<List<double>> graf = new List<List<double>>();
         public List<double> ile_powiazan = new List<double>();
         public List<double> zwyciezcy = new List<double>();
-        public double[,] r, r1;
+        public double[,] r, r_pi;
 
 
         public Form1()
@@ -118,34 +118,34 @@ namespace EkonometriaProject
 
                      //---zastepowanie zerem współczynników korelacji z R1 które są nieistotne
 
-                    r1 = r;
+                    r_pi = r;
 
-                    for (int i = 0; i < r1.GetLength(0); i++)
+                    for (int i = 0; i < r_pi.GetLength(0); i++)
                     {
                         graf.Add(new List<double>());
 
-                        for (int j = 0; j < r1.GetLength(0); j++)
+                        for (int j = 0; j < r_pi.GetLength(0); j++)
                         {
-                            if ((Math.Abs(r1[i, j]) <= r_alfa) && j>=i)
+                            if ((Math.Abs(r_pi[i, j]) <= r_alfa) && j>=i)
                             {
-                                r1[i, j] = 0;
+                                r_pi[i, j] = 0;
                             }
 
                             //--wszystko co pod przekątną to 0
                             if (j < i)
                             {
-                                r1[i, j] = 0;
+                                r_pi[i, j] = 0;
                             }
                         }
                     }
 
                     //z jakimi elementami w grafie powiązań łączy się np. x1 
-                    for (int i = 0; i < r1.GetLength(0); i++)
+                    for (int i = 0; i < r_pi.GetLength(0); i++)
                     {
-                        for (int j = 0; j < r1.GetLength(0); j++)
+                        for (int j = 0; j < r_pi.GetLength(0); j++)
                         {
                             //nie pobieraj 1 z przekątnej i nie pobieraj 0
-                            if (j != i && (r1[i, j]!=0))
+                            if (j != i && (r_pi[i, j]!=0))
                             {
                                 graf[j].Add(i+1);
                                 graf[i].Add(j+1);
@@ -237,12 +237,12 @@ namespace EkonometriaProject
                         dataTable4.Columns.Add(headers[i], typeof(string), null);
                     }
 
-                    for (int i = 0; i < r1.GetLength(0); i++)
+                    for (int i = 0; i < r_pi.GetLength(0); i++)
                     {
-                        string[] row = new string[r1.GetLength(1)];
-                        for(int j=0; j < r1.GetLength(1); j++)
+                        string[] row = new string[r_pi.GetLength(1)];
+                        for(int j=0; j < r_pi.GetLength(1); j++)
                         {
-                            row[j] = r1[i,j].ToString();
+                            row[j] = r_pi[i,j].ToString();
                         }
 
                         dataTable4.Rows.Add(row);
