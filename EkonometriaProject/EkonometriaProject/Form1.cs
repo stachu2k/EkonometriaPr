@@ -226,8 +226,10 @@ namespace EkonometriaProject
                         richTextBox1.AppendText("x"+ x.ToString() + ";  "); 
                         
                     }
-         //------------------------
-                    //Wsadzanie R do grida w Form1
+
+                    //------------------------------------------------
+
+                    //Wsadzanie R' do grida w Form1
                     dataGridR_pi.Columns.Clear();
                     DataTable dataTable4 = new DataTable();
                     for(int i = 1; i < headers.Length; i++)
