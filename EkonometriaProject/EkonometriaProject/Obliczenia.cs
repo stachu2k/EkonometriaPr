@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MathNet.Numerics;
 using MathNet.Numerics.Statistics;
 using MathNet.Numerics.LinearAlgebra;
 
@@ -54,6 +55,23 @@ namespace EkonometriaProject
             var r_matrix = Correlation.PearsonMatrix(daneArray);
             double[,] r = r_matrix.ToArray();
             return r;
+        }
+
+        public static double OdczytajT_alfa(List<List<double>> daneStat, int s_swobody)
+        {
+            //--Z tablic rozkładu t-Studenta odczytujemy wartość statystyki przy poziomie
+            //--istotności 0,05 oraz n-2
+            double alfa = 0.05;
+
+            double t_a = ExcelFunctions.TInv(alfa, s_swobody);
+            return t_a;
+        }
+
+        public static double ObliczR_alfa(double t_a, int s_swobody)
+        {
+            double r_alfa;
+            r_alfa = Math.Sqrt((Math.Pow(t_a, 2)) / (s_swobody + (Math.Pow(t_a, 2))));
+            return r_alfa;
         }
     }
 }

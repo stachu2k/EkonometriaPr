@@ -20,3 +20,13 @@ C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\Ekonometria
 C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
 C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaProject 25-05 h18-30\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.exe
 C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaProject 25-05 h18-30\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.pdb
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.exe
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.pdb
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.exe
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.pdb
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.dll
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csprojResolveAssemblyReference.cache
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Form1.resources
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csproj.GenerateResource.Cache

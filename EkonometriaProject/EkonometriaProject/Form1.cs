@@ -20,7 +20,7 @@ namespace EkonometriaProject
         public List<List<double>> graf = new List<List<double>>();
         public List<double> ile_powiazan = new List<double>();
         public List<double> zwyciezcy = new List<double>();
-        public double[,] r;
+        public double[,] r, r1;
 
 
         public Form1()
@@ -30,13 +30,6 @@ namespace EkonometriaProject
 
         private void zaladujPlikMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            double result = MathNet.Numerics.ExcelFunctions.TInv(0.02, 14);
-           // double aa = StudentT.Sample(0, 1, 30);
-            string v = result.ToString();
-            MessageBox.Show(v);
-            */
-
             if (zaladujPlikFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -68,7 +61,7 @@ namespace EkonometriaProject
 
                     dataGridDane.DataSource = dataTable1;
 
-                  
+                    //------------------------------------------------
 
                     //Obliczanie sredniej
                     srednie = Obliczenia.Srednia(daneStat);
@@ -88,80 +81,82 @@ namespace EkonometriaProject
 
                     dataGridR0.DataSource = dataTable2;
 
+                    //------------------------------------------------
+
                     //Obliczanie macierzy R
                     r = Obliczenia.KorelacjaR(daneStat);
 
-          //-------------------------------
+                    //Wsadzanie R do grida w Form1
+                    dataGridR.Columns.Clear();
+                    DataTable dataTable3 = new DataTable();
+                    for (int i = 1; i < headers.Length; i++)
+                    {
+                        dataTable3.Columns.Add(headers[i], typeof(string), null);
+                    }
 
-                    //--Z tablic rozkładu t-Studenta odczytujemy wartość statystyki przy poziomie istotności 0,05 oraz n-2
-                    int s_swobody = daneStat[0].Count - 2;
-                    double alfa = 0.05;
-
-                    //--oraz n-2, czyli np. 32-2 = 30 stopniach swobody
-                    double result = MathNet.Numerics.ExcelFunctions.TInv(alfa, s_swobody);
-
-
-                    //-----wartość krytyczna współczynnika korelacji 
-                    double r_alfa;
-
-                    r_alfa = Math.Sqrt((Math.Pow(result, 2)) / (s_swobody + (Math.Pow(result, 2))));
-
-                     //---zastepowanie zerem współczynników korelacji z R1 które są nieistotne
-               
-
-                  
                     for (int i = 0; i < r.GetLength(0); i++)
                     {
+                        string[] row = new string[r.GetLength(1)];
+                        for (int j = 0; j < r.GetLength(1); j++)
+                        {
+                            row[j] = r[i, j].ToString();
+                        }
 
+                        dataTable3.Rows.Add(row);
+                    }
+
+                    dataGridR.DataSource = dataTable3;
+
+                    //------------------------------------------------
+
+                    //--Z tablic rozkładu t-Studenta odczytujemy wartość statystyki przy poziomie
+                    //--istotności 0,05 oraz n-2
+                    double t_a = Obliczenia.OdczytajT_alfa(daneStat, daneStat[0].Count - 2);
+
+                    //-----wartość krytyczna współczynnika korelacji 
+                    double r_alfa = Obliczenia.ObliczR_alfa(t_a, daneStat[0].Count - 2);
+
+                     //---zastepowanie zerem współczynników korelacji z R1 które są nieistotne
+
+                    r1 = r;
+
+                    for (int i = 0; i < r1.GetLength(0); i++)
+                    {
                         graf.Add(new List<double>());
 
-                        for (int j = 0; j < r.GetLength(0); j++)
+                        for (int j = 0; j < r1.GetLength(0); j++)
                         {
-                           
-                            if ((Math.Abs(r[i, j]) <= r_alfa) && j>=i)
+                            if ((Math.Abs(r1[i, j]) <= r_alfa) && j>=i)
                             {
-                                r[i, j] = 0;
-
-                               
+                                r1[i, j] = 0;
                             }
 
                             //--wszystko co pod przekątną to 0
                             if (j < i)
                             {
-                                r[i, j] = 0;
+                                r1[i, j] = 0;
                             }
-                            
                         }
-                        
                     }
 
-
                     //z jakimi elementami w grafie powiązań łączy się np. x1 
-                    for (int i = 0; i < r.GetLength(0); i++)
+                    for (int i = 0; i < r1.GetLength(0); i++)
                     {
-
-                        for (int j = 0; j < r.GetLength(0); j++)
+                        for (int j = 0; j < r1.GetLength(0); j++)
                         {
                             //nie pobieraj 1 z przekątnej i nie pobieraj 0
-                            if (j != i && (r[i, j]!=0))
+                            if (j != i && (r1[i, j]!=0))
                             {
-                               
                                 graf[j].Add(i+1);
                                 graf[i].Add(j+1);
                             }
-
-
-                          
                         }
-
                     }
 
                     //--wyświeltenie tablicy powiązań w richtextbox1
                     int licznik = 0;
 
-                     
-
-                           richTextBox1.AppendText("Powiązania między zmiennymi objaśniającymi: "+"\n"); 
+                    richTextBox1.AppendText("Powiązania między zmiennymi objaśniającymi: "+"\n"); 
                     foreach (var x in graf)
                     {
                         licznik++;
@@ -169,27 +164,19 @@ namespace EkonometriaProject
                         richTextBox1.AppendText("x"+licznik.ToString()+" "+"z"+":  "); 
                         foreach (var y in x)
                         {
-            
                             richTextBox1.AppendText("x"+y.ToString()+ ";  "); 
-
                         }
                         richTextBox1.AppendText("\n"); 
                     }
-
 
                     //--- policzenie powiązań każdego x
                     for (int i = 0; i < graf.Count;i++ )
                     {
                        int z=graf[i].Count;
                        ile_powiazan.Add(z);
-
-                    
                     }
-
-
-
-
                     double max= ile_powiazan.Max();
+
                     //richTextBox1.AppendText( "\n "); 
 
                     //--wyszukanie ile jest x`ów o maxymalnej liczbie powiązań
@@ -216,8 +203,6 @@ namespace EkonometriaProject
                         }
                     }
 
-                  
-                    
                     max = ile_powiazan.Max();
                     richTextBox1.AppendText("\n "); 
 
@@ -235,41 +220,33 @@ namespace EkonometriaProject
 
                     }
 
-
-                    
                     richTextBox1.AppendText("Do modelu zostaną zakwalifikowane zmienne: "); 
                     foreach(var x in zwyciezcy)
                     {
                         richTextBox1.AppendText("x"+ x.ToString() + ";  "); 
                         
                     }
-                    
-
-             
-
-                    
-
          //------------------------
                     //Wsadzanie R do grida w Form1
-                    dataGridR.Columns.Clear();
-                    DataTable dataTable3 = new DataTable();
+                    dataGridR_pi.Columns.Clear();
+                    DataTable dataTable4 = new DataTable();
                     for(int i = 1; i < headers.Length; i++)
                     {
-                        dataTable3.Columns.Add(headers[i], typeof(string), null);
+                        dataTable4.Columns.Add(headers[i], typeof(string), null);
                     }
 
-                    for (int i = 0; i < r.GetLength(0); i++)
+                    for (int i = 0; i < r1.GetLength(0); i++)
                     {
-                        string[] row = new string[r.GetLength(1)];
-                        for(int j=0; j < r.GetLength(1); j++)
+                        string[] row = new string[r1.GetLength(1)];
+                        for(int j=0; j < r1.GetLength(1); j++)
                         {
-                            row[j] = r[i,j].ToString();
+                            row[j] = r1[i,j].ToString();
                         }
 
-                        dataTable3.Rows.Add(row);
+                        dataTable4.Rows.Add(row);
                     }
 
-                    dataGridR.DataSource = dataTable3;
+                    dataGridR_pi.DataSource = dataTable4;
                 }
                 catch (Exception ex)
                 {

@@ -45,6 +45,9 @@
             this.dataGridR = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.groupBoxR_pi = new System.Windows.Forms.GroupBox();
+            this.dataGridR_pi = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuGornyPasek.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDane)).BeginInit();
             this.groupBoxDane.SuspendLayout();
@@ -52,6 +55,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridR0)).BeginInit();
             this.groupBoxR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridR)).BeginInit();
+            this.groupBoxR_pi.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridR_pi)).BeginInit();
             this.SuspendLayout();
             // 
             // menuGornyPasek
@@ -190,17 +195,45 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(174, 235);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 235);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(569, 161);
+            this.richTextBox1.Size = new System.Drawing.Size(474, 199);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
+            // 
+            // groupBoxR_pi
+            // 
+            this.groupBoxR_pi.Controls.Add(this.dataGridR_pi);
+            this.groupBoxR_pi.Location = new System.Drawing.Point(506, 232);
+            this.groupBoxR_pi.Name = "groupBoxR_pi";
+            this.groupBoxR_pi.Size = new System.Drawing.Size(332, 202);
+            this.groupBoxR_pi.TabIndex = 7;
+            this.groupBoxR_pi.TabStop = false;
+            this.groupBoxR_pi.Text = "Macierz R\'";
+            // 
+            // dataGridR_pi
+            // 
+            this.dataGridR_pi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridR_pi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column4});
+            this.dataGridR_pi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridR_pi.Location = new System.Drawing.Point(3, 16);
+            this.dataGridR_pi.Name = "dataGridR_pi";
+            this.dataGridR_pi.RowHeadersVisible = false;
+            this.dataGridR_pi.Size = new System.Drawing.Size(326, 183);
+            this.dataGridR_pi.TabIndex = 0;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 408);
+            this.ClientSize = new System.Drawing.Size(855, 449);
+            this.Controls.Add(this.groupBoxR_pi);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBoxR);
             this.Controls.Add(this.groupBoxR0);
@@ -217,6 +250,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridR0)).EndInit();
             this.groupBoxR.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridR)).EndInit();
+            this.groupBoxR_pi.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridR_pi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,6 +276,9 @@
         private System.Windows.Forms.DataGridView dataGridR;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.GroupBox groupBoxR_pi;
+        private System.Windows.Forms.DataGridView dataGridR_pi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 
     }
 }
