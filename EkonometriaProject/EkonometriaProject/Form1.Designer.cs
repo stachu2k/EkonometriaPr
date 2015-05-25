@@ -44,6 +44,7 @@
             this.groupBoxR = new System.Windows.Forms.GroupBox();
             this.dataGridR = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuGornyPasek.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDane)).BeginInit();
             this.groupBoxDane.SuspendLayout();
@@ -116,6 +117,7 @@
             this.dataGridDane.RowHeadersWidth = 100;
             this.dataGridDane.Size = new System.Drawing.Size(326, 183);
             this.dataGridDane.TabIndex = 2;
+            this.dataGridDane.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDane_CellContentClick);
             // 
             // Column1
             // 
@@ -167,7 +169,7 @@
             this.groupBoxR.Size = new System.Drawing.Size(332, 202);
             this.groupBoxR.TabIndex = 5;
             this.groupBoxR.TabStop = false;
-            this.groupBoxR.Text = "Macierz korelacji R";
+            this.groupBoxR.Text = "Macierz korelacji R1";
             // 
             // dataGridR
             // 
@@ -186,11 +188,20 @@
             this.Column3.HeaderText = "Column3";
             this.Column3.Name = "Column3";
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(174, 235);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(569, 161);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 408);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBoxR);
             this.Controls.Add(this.groupBoxR0);
             this.Controls.Add(this.groupBoxDane);
@@ -229,6 +240,7 @@
         private System.Windows.Forms.GroupBox groupBoxR;
         private System.Windows.Forms.DataGridView dataGridR;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
 
     }
 }

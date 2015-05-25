@@ -8,3 +8,13 @@ c:\users\paweł\documents\visual studio 2010\Projects\EkonometriaProject\Ekonome
 C:\Users\Paweł\documents\visual studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csprojResolveAssemblyReference.cache
 C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.dll
 C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.exe
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.pdb
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csprojResolveAssemblyReference.cache
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Form1.resources
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csproj.GenerateResource.Cache
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.exe
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.pdb
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.dll
+C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
