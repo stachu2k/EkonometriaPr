@@ -18,3 +18,5 @@ C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\Ekonometria
 C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.pdb
 C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.dll
 C:\Users\mm\Documents\Visual Studio 2010\Projects\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.exe
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.pdb
