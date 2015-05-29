@@ -30,3 +30,5 @@ C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\Ekonom
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Form1.resources
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csproj.GenerateResource.Cache
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\bin\Debug\nunit.framework.dll
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\bin\Debug\nunit.framework.xml
