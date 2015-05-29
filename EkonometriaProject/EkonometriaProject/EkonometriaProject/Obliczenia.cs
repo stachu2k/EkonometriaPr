@@ -24,7 +24,7 @@ namespace EkonometriaProject
                     suma = suma + daneStat[i][j];
                 }
 
-                suma = suma / ile_wWierszu;
+                suma = suma / (ile_wWierszu)*1.0;
                 srednie.Add(suma);
             }
 

@@ -1,9 +1,7 @@
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.exe
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.pdb
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.dll
-C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\nunit.framework.dll
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
-C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\nunit.framework.xml
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csprojResolveAssemblyReference.cache
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Form1.resources
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
