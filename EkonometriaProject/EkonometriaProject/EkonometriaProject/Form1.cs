@@ -8,6 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using MathNet.Numerics.Distributions;
+//using MathNet.Numerics.LinearAlgebra;
+//using MathNet.Numerics.LinearAlgebra.Single;
+using MathNet.Numerics.LinearAlgebra.Double;
+using MathNet.Numerics;
+
+
 
 
 namespace EkonometriaProject
@@ -15,12 +21,18 @@ namespace EkonometriaProject
     public partial class Form1 : Form
     {
         public List<List<double>> daneStat = new List<List<double>>();
+        
         public List<double> srednie = new List<double>();
         public List<double> r0 = new List<double>();
         public List<List<double>> graf = new List<List<double>>();
         public List<double> ile_powiazan = new List<double>();
-        public List<double> zwyciezcy = new List<double>();
-        public double[,] r, r_pi;
+        public List<int> zwyciezcy = new List<int>();
+        public double[,] r, r_pi,X;
+        public double[] Y;
+
+       // public List<List<double>> X = new List<List<double>>();
+        //public List<List<double>> Y = new List<List<double>>();
+        public List<List<double>> x_trans = new List<List<double>>();
 
 
         public Form1()
@@ -46,8 +58,19 @@ namespace EkonometriaProject
                         daneStat.Add(new List<double>());
                     }
 
+
+
+                  
+                   // Y = new double[];
+                    var Y = new DenseVector(textData.Length-1);
+
                     for (int i = 1; i < textData.Length; i++)
                     {
+                        
+                       
+                       // Y.Add(new List<double>());
+
+
                         string a = textData[i];
                         String[] b = a.Split(' ');
                         dataTable1.Rows.Add(b);
@@ -56,13 +79,59 @@ namespace EkonometriaProject
                         {
                             string wartosc = b[j];
                             daneStat[j].Add(float.Parse(wartosc));
+
+                            
+                            //nie zapisuj do macierzyX danych z kolumny Y
+                            if (j != 0)
+                            {
+                                //richTextBox1.AppendText("i:"+i+"; j:"+j);  //j-1, bo wrzucamy pod j-1 w tablicy X
+                                //X[i - 1,j]=(float.Parse(wartosc));
+                                //richTextBox1.AppendText(X[i - 1][j - 1] + "; "); 
+
+                            }
+                            else
+                            {
+                                Y[i - 1]=double.Parse(wartosc);
+                            }
+                             
                         }
                     }
 
-                    dataGridDane.DataSource = dataTable1;
+                    /*
+                    //--wyświetlenie macierzyX
+                    for (int i = 0; i < X.RowCount; i++)
+                    {
+                        for (int j = 0; j < X.ColumnCount; j++)
+                        {
+                            richTextBox1.AppendText(X[i,j].ToString()+"; "); 
+                        }
 
+                        richTextBox1.AppendText("\n"); 
+                    }
+                   
+
+
+                 
+                    //--------------------------
+
+                  
+                    richTextBox1.AppendText("\n");
+                    var inverseee = X.Transpose();
+
+
+                    var Xt_x_X = inverseee.Multiply(X);
+
+                   richTextBox1.AppendText("Macierz Transponowana");
+                    richTextBox1.AppendText(inverseee.ToString());
+
+                    richTextBox1.AppendText("\n");
+
+                    richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
+                    richTextBox1.AppendText(Xt_x_X.ToString()); 
+                      */
                     //------------------------------------------------
 
+                    dataGridDane.DataSource = dataTable1;
                     //Obliczanie sredniej
                     srednie = Obliczenia.Srednia(daneStat);
 
@@ -87,6 +156,11 @@ namespace EkonometriaProject
                     r = Obliczenia.KorelacjaR(daneStat);
 
                     //Wsadzanie R do grida w Form1
+
+                    //r[0,3]=0.1;
+                   // r[1, 3] = 0.1;
+                    //r[2, 3] = 0.8;
+                
                     dataGridR.Columns.Clear();
                     DataTable dataTable3 = new DataTable();
                     for (int i = 1; i < headers.Length; i++)
@@ -214,7 +288,7 @@ namespace EkonometriaProject
                         {
                             //---żeby wskazać zwyciezcę numerujemy kolumny 1,2,3,4 a nie 0,1,2,3
                            
-                            zwyciezcy.Add(i + 1);
+                            zwyciezcy.Add(i+1 );
                           
                         }
 
@@ -228,6 +302,87 @@ namespace EkonometriaProject
                     }
 
                     //------------------------------------------------
+                    
+                    //--macierzX wybranych x
+                    var X = new DenseMatrix(textData.Length - 1, zwyciezcy.Count + 1);
+                    //--przechodzi po wierszach
+                    for (int k = 1; k < textData.Length; k++)
+                    {
+                        X[k - 1, 0] = 1;
+                        //-- przechodzi po wybranych X
+                        for (int i = 0; i < zwyciezcy.Count; i++)
+                        {
+
+                            string a = textData[k];
+                            string[] b = a.Split(' ');
+                            //dataTable1.Rows.Add(b);
+
+                            X[k - 1, i+1] = Convert.ToDouble(b[zwyciezcy[i]]);
+
+
+                        }
+
+                    }
+
+                    richTextBox1.AppendText("\n");
+                    //--wyświetlenie macierzyY
+                    richTextBox1.AppendText("\n");
+
+                    /*
+                    //--wyświetlenie macierzyY
+                    for (int i = 0; i < textData.Length-1; i++)
+                    {
+
+                        richTextBox1.AppendText(Y[i].ToString() + "; ");
+
+
+                        richTextBox1.AppendText("\n");
+                    }
+
+                    */
+
+                    richTextBox1.AppendText("\n");
+                    var x_trans = X.Transpose();
+
+
+                    var Xt_x_X = x_trans.Multiply(X);
+
+                    richTextBox1.AppendText("Macierz Transponowana");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(x_trans.ToString());
+
+                    richTextBox1.AppendText("\n");
+
+                    richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(Xt_x_X.ToString());
+
+
+                    var Xt_x_X_invers = Xt_x_X.Inverse();
+
+                    richTextBox1.AppendText("\n");
+
+                    richTextBox1.AppendText("Macierz odwrotna");
+                    //Xt_x_X_invers.RemoveRow(0);
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(Xt_x_X_invers.ToString());
+
+                    var X_trans_x_Y = x_trans.Multiply(Y);
+
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText("Macierz X transponowana przemnożona przez wektor Y");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(X_trans_x_Y .ToString());
+
+                    var alfa = Xt_x_X_invers.Multiply(X_trans_x_Y);
+
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText("Współczynniki alfa");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(alfa.ToString());
+
+
+                    //----------------------------------
 
                     //Wsadzanie R' do grida w Form1
                     dataGridR_pi.Columns.Clear();
@@ -258,6 +413,11 @@ namespace EkonometriaProject
         }
 
         private void dataGridDane_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void menuGornyPasek_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
