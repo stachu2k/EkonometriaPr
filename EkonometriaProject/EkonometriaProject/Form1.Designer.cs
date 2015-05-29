@@ -66,9 +66,10 @@
             this.infoMenu});
             this.menuGornyPasek.Location = new System.Drawing.Point(0, 0);
             this.menuGornyPasek.Name = "menuGornyPasek";
-            this.menuGornyPasek.Size = new System.Drawing.Size(855, 24);
+            this.menuGornyPasek.Size = new System.Drawing.Size(1053, 24);
             this.menuGornyPasek.TabIndex = 1;
             this.menuGornyPasek.Text = "menuStrip1";
+            this.menuGornyPasek.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuGornyPasek_ItemClicked);
             // 
             // plikMenu
             // 
@@ -197,14 +198,14 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(12, 235);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(474, 199);
+            this.richTextBox1.Size = new System.Drawing.Size(674, 199);
             this.richTextBox1.TabIndex = 6;
             this.richTextBox1.Text = "";
             // 
             // groupBoxR_pi
             // 
             this.groupBoxR_pi.Controls.Add(this.dataGridR_pi);
-            this.groupBoxR_pi.Location = new System.Drawing.Point(506, 232);
+            this.groupBoxR_pi.Location = new System.Drawing.Point(692, 235);
             this.groupBoxR_pi.Name = "groupBoxR_pi";
             this.groupBoxR_pi.Size = new System.Drawing.Size(332, 202);
             this.groupBoxR_pi.TabIndex = 7;
@@ -232,7 +233,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 449);
+            this.ClientSize = new System.Drawing.Size(1053, 449);
             this.Controls.Add(this.groupBoxR_pi);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.groupBoxR);

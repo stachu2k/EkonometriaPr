@@ -8,6 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using MathNet.Numerics.Distributions;
+//using MathNet.Numerics.LinearAlgebra;
+//using MathNet.Numerics.LinearAlgebra.Single;
+using MathNet.Numerics.LinearAlgebra.Double;
+using MathNet.Numerics;
+
+
 
 
 namespace EkonometriaProject
@@ -15,12 +21,17 @@ namespace EkonometriaProject
     public partial class Form1 : Form
     {
         public List<List<double>> daneStat = new List<List<double>>();
+        
         public List<double> srednie = new List<double>();
         public List<double> r0 = new List<double>();
         public List<List<double>> graf = new List<List<double>>();
         public List<double> ile_powiazan = new List<double>();
         public List<double> zwyciezcy = new List<double>();
-        public double[,] r, r_pi;
+        public double[,] r, r_pi,X;
+
+       // public List<List<double>> X = new List<List<double>>();
+        public List<List<double>> Y = new List<List<double>>();
+        public List<List<double>> x_trans = new List<List<double>>();
 
 
         public Form1()
@@ -46,8 +57,25 @@ namespace EkonometriaProject
                         daneStat.Add(new List<double>());
                     }
 
+
+                    //double[][] X = new double[textData.Length - 1][];
+
+                    var X = new DenseMatrix(textData.Length - 1, headers.Length);
+                   
+
                     for (int i = 1; i < textData.Length; i++)
                     {
+                        
+                        //--headers.lenght bo mamy 4 kolumny, razem z wartoscią 1
+                       // X[i - 1] = new double[headers.Length];
+                        
+                       // X.Add(new List<double>());
+                        Y.Add(new List<double>());
+
+
+                        //--- (i-1) żeby nie brać wiersza nagłówkowego (i=1)
+                        X[i - 1,0] = 1;
+
                         string a = textData[i];
                         String[] b = a.Split(' ');
                         dataTable1.Rows.Add(b);
@@ -56,11 +84,54 @@ namespace EkonometriaProject
                         {
                             string wartosc = b[j];
                             daneStat[j].Add(float.Parse(wartosc));
+
+                            
+                            //nie zapisuj do macierzyX danych z kolumny Y
+                            if (j != 0)
+                            {
+                                //richTextBox1.AppendText("i:"+i+"; j:"+j);  //j-1, bo wrzucamy pod j-1 w tablicy X
+                                X[i - 1,j]=(float.Parse(wartosc));
+                                //richTextBox1.AppendText(X[i - 1][j - 1] + "; "); 
+
+                            }
+                            else
+                            {
+                                Y[i - 1].Add(double.Parse(wartosc));
+                            }
+                             
                         }
                     }
 
-                    dataGridDane.DataSource = dataTable1;
+                    //--wyświetlenie macierzyX
+                    for (int i = 0; i < X.RowCount; i++)
+                    {
+                        for (int j = 0; j < X.ColumnCount; j++)
+                        {
+                            richTextBox1.AppendText(X[i,j].ToString()+"; "); 
+                        }
 
+                        richTextBox1.AppendText("\n"); 
+                    }
+                    
+
+                   
+                    dataGridDane.DataSource = dataTable1;
+                    //--------------------------
+
+                  
+                    richTextBox1.AppendText("\n");
+                    var inverseee = X.Transpose();
+
+
+                    var Xt_x_X = inverseee.Multiply(X);
+
+                   richTextBox1.AppendText("Macierz Transponowana");
+                    richTextBox1.AppendText(inverseee.ToString());
+
+                    richTextBox1.AppendText("\n");
+
+                    richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
+                    richTextBox1.AppendText(Xt_x_X.ToString()); 
                     //------------------------------------------------
 
                     //Obliczanie sredniej
@@ -258,6 +329,11 @@ namespace EkonometriaProject
         }
 
         private void dataGridDane_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void menuGornyPasek_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
