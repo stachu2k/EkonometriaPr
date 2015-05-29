@@ -47,3 +47,15 @@ C:\Users\mm\Desktop\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\
 C:\Users\mm\Desktop\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
 C:\Users\mm\Desktop\EkonometriaPr\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csproj.GenerateResource.Cache
 >>>>>>> f300d7cf7798b0f9e570725bd50d36014ce93d17:EkonometriaProject/EkonometriaProject/EkonometriaProject/obj/x86/Debug/EkonometriaProject.csproj.FileListAbsolute.txt
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.exe
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.pdb
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.exe
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\EkonometriaProject.pdb
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.dll
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\nunit.framework.dll
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\MathNet.Numerics.xml
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\bin\Debug\nunit.framework.xml
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csprojResolveAssemblyReference.cache
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Form1.resources
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csproj.GenerateResource.Cache
