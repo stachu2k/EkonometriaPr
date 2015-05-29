@@ -28,9 +28,10 @@ namespace EkonometriaProject
         public List<double> ile_powiazan = new List<double>();
         public List<int> zwyciezcy = new List<int>();
         public double[,] r, r_pi,X;
+        public double[] Y;
 
        // public List<List<double>> X = new List<List<double>>();
-        public List<List<double>> Y = new List<List<double>>();
+        //public List<List<double>> Y = new List<List<double>>();
         public List<List<double>> x_trans = new List<List<double>>();
 
 
@@ -58,14 +59,16 @@ namespace EkonometriaProject
                     }
 
 
-                   
-                   
+
+                  
+                   // Y = new double[];
+                    var Y = new DenseVector(textData.Length-1);
 
                     for (int i = 1; i < textData.Length; i++)
                     {
                         
                        
-                        Y.Add(new List<double>());
+                       // Y.Add(new List<double>());
 
 
                         string a = textData[i];
@@ -88,7 +91,7 @@ namespace EkonometriaProject
                             }
                             else
                             {
-                                Y[i - 1].Add(double.Parse(wartosc));
+                                Y[i - 1]=double.Parse(wartosc);
                             }
                              
                         }
@@ -322,17 +325,62 @@ namespace EkonometriaProject
                     }
 
                     richTextBox1.AppendText("\n");
-                    //--wyświetlenie macierzyX
-                    for (int i = 0; i < X.RowCount; i++)
+                    //--wyświetlenie macierzyY
+                    richTextBox1.AppendText("\n");
+
+                    /*
+                    //--wyświetlenie macierzyY
+                    for (int i = 0; i < textData.Length-1; i++)
                     {
-                        for (int j = 0; j < X.ColumnCount; j++)
-                        {
-                            richTextBox1.AppendText(X[i, j].ToString() + "; ");
-                        }
+
+                        richTextBox1.AppendText(Y[i].ToString() + "; ");
+
 
                         richTextBox1.AppendText("\n");
                     }
-                   
+
+                    */
+
+                    richTextBox1.AppendText("\n");
+                    var x_trans = X.Transpose();
+
+
+                    var Xt_x_X = x_trans.Multiply(X);
+
+                    richTextBox1.AppendText("Macierz Transponowana");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(x_trans.ToString());
+
+                    richTextBox1.AppendText("\n");
+
+                    richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(Xt_x_X.ToString());
+
+
+                    var Xt_x_X_invers = Xt_x_X.Inverse();
+
+                    richTextBox1.AppendText("\n");
+
+                    richTextBox1.AppendText("Macierz odwrotna");
+                    //Xt_x_X_invers.RemoveRow(0);
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(Xt_x_X_invers.ToString());
+
+                    var X_trans_x_Y = x_trans.Multiply(Y);
+
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText("Macierz X transponowana przemnożona przez wektor Y");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(X_trans_x_Y .ToString());
+
+                    var alfa = Xt_x_X_invers.Multiply(X_trans_x_Y);
+
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText("Współczynniki alfa");
+                    richTextBox1.AppendText("\n");
+                    richTextBox1.AppendText(alfa.ToString());
+
 
                     //----------------------------------
 
