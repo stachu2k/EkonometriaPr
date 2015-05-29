@@ -26,7 +26,7 @@ namespace EkonometriaProject
         public List<double> r0 = new List<double>();
         public List<List<double>> graf = new List<List<double>>();
         public List<double> ile_powiazan = new List<double>();
-        public List<double> zwyciezcy = new List<double>();
+        public List<int> zwyciezcy = new List<int>();
         public double[,] r, r_pi,X;
 
        // public List<List<double>> X = new List<List<double>>();
@@ -58,23 +58,15 @@ namespace EkonometriaProject
                     }
 
 
-                    //double[][] X = new double[textData.Length - 1][];
-
-                    var X = new DenseMatrix(textData.Length - 1, headers.Length);
+                   
                    
 
                     for (int i = 1; i < textData.Length; i++)
                     {
                         
-                        //--headers.lenght bo mamy 4 kolumny, razem z wartoscią 1
-                       // X[i - 1] = new double[headers.Length];
-                        
-                       // X.Add(new List<double>());
+                       
                         Y.Add(new List<double>());
 
-
-                        //--- (i-1) żeby nie brać wiersza nagłówkowego (i=1)
-                        X[i - 1,0] = 1;
 
                         string a = textData[i];
                         String[] b = a.Split(' ');
@@ -90,7 +82,7 @@ namespace EkonometriaProject
                             if (j != 0)
                             {
                                 //richTextBox1.AppendText("i:"+i+"; j:"+j);  //j-1, bo wrzucamy pod j-1 w tablicy X
-                                X[i - 1,j]=(float.Parse(wartosc));
+                                //X[i - 1,j]=(float.Parse(wartosc));
                                 //richTextBox1.AppendText(X[i - 1][j - 1] + "; "); 
 
                             }
@@ -102,6 +94,7 @@ namespace EkonometriaProject
                         }
                     }
 
+                    /*
                     //--wyświetlenie macierzyX
                     for (int i = 0; i < X.RowCount; i++)
                     {
@@ -112,10 +105,10 @@ namespace EkonometriaProject
 
                         richTextBox1.AppendText("\n"); 
                     }
-                    
-
                    
-                    dataGridDane.DataSource = dataTable1;
+
+
+                 
                     //--------------------------
 
                   
@@ -132,8 +125,10 @@ namespace EkonometriaProject
 
                     richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
                     richTextBox1.AppendText(Xt_x_X.ToString()); 
+                      */
                     //------------------------------------------------
 
+                    dataGridDane.DataSource = dataTable1;
                     //Obliczanie sredniej
                     srednie = Obliczenia.Srednia(daneStat);
 
@@ -158,6 +153,11 @@ namespace EkonometriaProject
                     r = Obliczenia.KorelacjaR(daneStat);
 
                     //Wsadzanie R do grida w Form1
+
+                    //r[0,3]=0.1;
+                   // r[1, 3] = 0.1;
+                    //r[2, 3] = 0.8;
+                
                     dataGridR.Columns.Clear();
                     DataTable dataTable3 = new DataTable();
                     for (int i = 1; i < headers.Length; i++)
@@ -285,7 +285,7 @@ namespace EkonometriaProject
                         {
                             //---żeby wskazać zwyciezcę numerujemy kolumny 1,2,3,4 a nie 0,1,2,3
                            
-                            zwyciezcy.Add(i + 1);
+                            zwyciezcy.Add(i+1 );
                           
                         }
 
@@ -299,6 +299,42 @@ namespace EkonometriaProject
                     }
 
                     //------------------------------------------------
+                    
+                    //--macierzX wybranych x
+                    var X = new DenseMatrix(textData.Length - 1, zwyciezcy.Count + 1);
+                    //--przechodzi po wierszach
+                    for (int k = 1; k < textData.Length; k++)
+                    {
+                        X[k - 1, 0] = 1;
+                        //-- przechodzi po wybranych X
+                        for (int i = 0; i < zwyciezcy.Count; i++)
+                        {
+
+                            string a = textData[k];
+                            string[] b = a.Split(' ');
+                            //dataTable1.Rows.Add(b);
+
+                            X[k - 1, i+1] = Convert.ToDouble(b[zwyciezcy[i]]);
+
+
+                        }
+
+                    }
+
+                    richTextBox1.AppendText("\n");
+                    //--wyświetlenie macierzyX
+                    for (int i = 0; i < X.RowCount; i++)
+                    {
+                        for (int j = 0; j < X.ColumnCount; j++)
+                        {
+                            richTextBox1.AppendText(X[i, j].ToString() + "; ");
+                        }
+
+                        richTextBox1.AppendText("\n");
+                    }
+                   
+
+                    //----------------------------------
 
                     //Wsadzanie R' do grida w Form1
                     dataGridR_pi.Columns.Clear();
