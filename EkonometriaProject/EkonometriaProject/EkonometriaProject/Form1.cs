@@ -8,12 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using MathNet.Numerics.Distributions;
-//using MathNet.Numerics.LinearAlgebra;
-//using MathNet.Numerics.LinearAlgebra.Single;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics;
-
-
 
 
 namespace EkonometriaProject
@@ -29,10 +25,6 @@ namespace EkonometriaProject
         public List<int> zwyciezcy = new List<int>();
         public double[,] r, r_pi,X;
         public double[] Y;
-
-       // public List<List<double>> X = new List<List<double>>();
-        //public List<List<double>> Y = new List<List<double>>();
-        public List<List<double>> x_trans = new List<List<double>>();
 
 
         public Form1()
@@ -59,18 +51,12 @@ namespace EkonometriaProject
                     }
 
 
-
-                  
-                   // Y = new double[];
                     var Y = new DenseVector(textData.Length-1);
 
                     for (int i = 1; i < textData.Length; i++)
                     {
                         
-                       
-                       // Y.Add(new List<double>());
-
-
+ 
                         string a = textData[i];
                         String[] b = a.Split(' ');
                         dataTable1.Rows.Add(b);
@@ -81,15 +67,8 @@ namespace EkonometriaProject
                             daneStat[j].Add(float.Parse(wartosc));
 
                             
-                            //nie zapisuj do macierzyX danych z kolumny Y
-                            if (j != 0)
-                            {
-                                //richTextBox1.AppendText("i:"+i+"; j:"+j);  //j-1, bo wrzucamy pod j-1 w tablicy X
-                                //X[i - 1,j]=(float.Parse(wartosc));
-                                //richTextBox1.AppendText(X[i - 1][j - 1] + "; "); 
-
-                            }
-                            else
+                           
+                            if (j==0)
                             {
                                 Y[i - 1]=double.Parse(wartosc);
                             }
@@ -97,39 +76,6 @@ namespace EkonometriaProject
                         }
                     }
 
-                    /*
-                    //--wyświetlenie macierzyX
-                    for (int i = 0; i < X.RowCount; i++)
-                    {
-                        for (int j = 0; j < X.ColumnCount; j++)
-                        {
-                            richTextBox1.AppendText(X[i,j].ToString()+"; "); 
-                        }
-
-                        richTextBox1.AppendText("\n"); 
-                    }
-                   
-
-
-                 
-                    //--------------------------
-
-                  
-                    richTextBox1.AppendText("\n");
-                    var inverseee = X.Transpose();
-
-
-                    var Xt_x_X = inverseee.Multiply(X);
-
-                   richTextBox1.AppendText("Macierz Transponowana");
-                    richTextBox1.AppendText(inverseee.ToString());
-
-                    richTextBox1.AppendText("\n");
-
-                    richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
-                    richTextBox1.AppendText(Xt_x_X.ToString()); 
-                      */
-                    //------------------------------------------------
 
                     dataGridDane.DataSource = dataTable1;
                     //Obliczanie sredniej
@@ -158,8 +104,8 @@ namespace EkonometriaProject
                     //Wsadzanie R do grida w Form1
 
                     //r[0,3]=0.1;
-                   // r[1, 3] = 0.1;
-                    //r[2, 3] = 0.8;
+                   //r[1, 3] = 0.1;
+                   // r[2, 3] = 0.1;
                 
                     dataGridR.Columns.Clear();
                     DataTable dataTable3 = new DataTable();
@@ -194,216 +140,188 @@ namespace EkonometriaProject
 
                     r_pi = r;
 
-                    for (int i = 0; i < r_pi.GetLength(0); i++)
-                    {
-                        graf.Add(new List<double>());
+                     Obliczenia.Wspolczynniki_nieistotne(ref r_pi, r_alfa,ref graf);
+                    //!-wspolcz_nieistotne
 
-                        for (int j = 0; j < r_pi.GetLength(0); j++)
-                        {
-                            if ((Math.Abs(r_pi[i, j]) <= r_alfa) && j>=i)
-                            {
-                                r_pi[i, j] = 0;
-                            }
-
-                            //--wszystko co pod przekątną to 0
-                            if (j < i)
-                            {
-                                r_pi[i, j] = 0;
-                            }
-                        }
-                    }
 
                     //z jakimi elementami w grafie powiązań łączy się np. x1 
-                    for (int i = 0; i < r_pi.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < r_pi.GetLength(0); j++)
-                        {
-                            //nie pobieraj 1 z przekątnej i nie pobieraj 0
-                            if (j != i && (r_pi[i, j]!=0))
-                            {
-                                graf[j].Add(i+1);
-                                graf[i].Add(j+1);
-                            }
-                        }
-                    }
+                    Obliczenia.Powiazania(ref r_pi, ref graf);
+                     
 
                     //--wyświeltenie tablicy powiązań w richtextbox1
                     int licznik = 0;
+                 
+                  richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                  richTextBox1.AppendText("Powiązania między zmiennymi objaśniającymi: " + "\n");
+                  foreach (var x in graf)
+                  {
+                      licznik++;
 
-                    richTextBox1.AppendText("Powiązania między zmiennymi objaśniającymi: "+"\n"); 
-                    foreach (var x in graf)
-                    {
-                        licznik++;
-                        
-                        richTextBox1.AppendText("x"+licznik.ToString()+" "+"z"+":  "); 
-                        foreach (var y in x)
-                        {
-                            richTextBox1.AppendText("x"+y.ToString()+ ";  "); 
-                        }
-                        richTextBox1.AppendText("\n"); 
-                    }
+                      richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Bold);
+                      richTextBox1.AppendText("x" + licznik.ToString() + " " + "z" + ":  ");
+                      foreach (var y in x)
+                      {
+                          richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                          richTextBox1.AppendText("x" + y.ToString() + ";  ");
+                      }
+                      richTextBox1.AppendText("\n");
+                  }
 
-                    //--- policzenie powiązań każdego x
-                    for (int i = 0; i < graf.Count;i++ )
-                    {
-                       int z=graf[i].Count;
-                       ile_powiazan.Add(z);
-                    }
-                    double max= ile_powiazan.Max();
 
-                    //richTextBox1.AppendText( "\n "); 
+                  //--- policzenie powiązań każdego x i zwrócenie maksymalnej liczby powiązań
+                  double max=Obliczenia.Ile_powiazan(graf, ref ile_powiazan);
 
-                    //--wyszukanie ile jest x`ów o maxymalnej liczbie powiązań
-                    for (int i = 0; i < ile_powiazan.Count; i++)
-                    {
+                  //--wyszukanie ile jest x`ów o maxymalnej liczbie powiązań i zwrócenie największej wartośći współczynnika korelacji
+                 max=Obliczenia.Ile_X_o_max_powiazan(ref ile_powiazan, ref zwyciezcy,r0,max);
 
-                        // --zmienna izolowana zawsze wchodzi do modelu
-                        if (ile_powiazan[i] == 0)
-                        {
-                            zwyciezcy.Add(i + 1);
-                        }     
-                        //---jeśli nie jest max to ustaw -5 (czyli całkowicie wyelminuj x z gry,bo korelacja chyba od -1 do 1)
-                        else if(ile_powiazan[i]<max)
-                        {
-                            //--korelacja od -1 do 1?
-                            ile_powiazan[i] = -5;
+   
+                 richTextBox1.AppendText("\n "); 
 
-                       }
-                        else{
+                 //wyszukaj maxymalną wartość współczynnika korelacji z x które się jeszcze liczą
+                 Obliczenia.Max_wspolczynnik_korelacji(ile_powiazan, ref zwyciezcy, max);
+                 
 
-                            //--- w przeciwnym wypadku podstaw pod powiązanie odpowiednik z R0
-                             ile_powiazan[i]=r0[i];
-                             //richTextBox1.AppendText(ile_powiazan[i].ToString() + ";  "); 
-                        }
-                    }
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Do modelu zostaną zakwalifikowane zmienne: ");
+                 foreach (var x in zwyciezcy)
+                 {
+                     richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Regular);
+                     richTextBox1.AppendText("x" + x.ToString() + ";  ");
 
-                    max = ile_powiazan.Max();
-                    richTextBox1.AppendText("\n "); 
+                 }
 
-                    //wyszukaj maxymalną wartość współczynnika korelacji z x które się jeszcze liczą
-                    for (int i = 0; i < ile_powiazan.Count; i++)
-                    {
-                        //--jeśli maxymalna liczba powiązań to 0, to x został już wcześniej dodany do zwyciezcy
-                        if (ile_powiazan[i] >= max && ile_powiazan[i] != 0) //--!!!!!--
-                        {
-                            //---żeby wskazać zwyciezcę numerujemy kolumny 1,2,3,4 a nie 0,1,2,3
-                           
-                            zwyciezcy.Add(i+1 );
-                          
-                        }
-
-                    }
-
-                    richTextBox1.AppendText("Do modelu zostaną zakwalifikowane zmienne: "); 
-                    foreach(var x in zwyciezcy)
-                    {
-                        richTextBox1.AppendText("x"+ x.ToString() + ";  "); 
-                        
-                    }
-
-                    //------------------------------------------------
+                 //------------------------------------------------
                     
-                    //--macierzX wybranych x
-                    var X = new DenseMatrix(textData.Length - 1, zwyciezcy.Count + 1);
-                    //--przechodzi po wierszach
-                    for (int k = 1; k < textData.Length; k++)
-                    {
-                        X[k - 1, 0] = 1;
-                        //-- przechodzi po wybranych X
-                        for (int i = 0; i < zwyciezcy.Count; i++)
-                        {
+                 //--macierzX z wybranych x
+               dynamic X= new DenseMatrix(textData.Length - 1, zwyciezcy.Count + 1);
+               Obliczenia.MacierzX(textData, zwyciezcy, ref X);
 
-                            string a = textData[k];
-                            string[] b = a.Split(' ');
-                            //dataTable1.Rows.Add(b);
-
-                            X[k - 1, i+1] = Convert.ToDouble(b[zwyciezcy[i]]);
+                 richTextBox1.AppendText("\n");
+                 //--wyświetlenie macierzyY
+                 richTextBox1.AppendText("\n");
 
 
-                        }
+                 //--macierz X transponowana
+                 dynamic x_trans=0;
 
-                    }
+                 //--macierz X transponowana przemnożona przez macierz X
+                 dynamic Xt_x_X = 0;
 
-                    richTextBox1.AppendText("\n");
-                    //--wyświetlenie macierzyY
-                    richTextBox1.AppendText("\n");
+                 //--odwrotność Xt_x_X
+                 dynamic Xt_x_X_invers = 0;
 
-                    /*
-                    //--wyświetlenie macierzyY
-                    for (int i = 0; i < textData.Length-1; i++)
-                    {
+                //-- macierz X transponowana przemnożona przez wektor Y
+                 dynamic X_trans_x_Y = 0; 
 
-                        richTextBox1.AppendText(Y[i].ToString() + "; ");
+                 //--wyliczenie  parametrów strukturalnych
+                 dynamic alfa = Obliczenia.param_strukturalne(X, Y, ref x_trans, ref Xt_x_X, ref X_trans_x_Y, ref Xt_x_X_invers);
 
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Macierz transponowana X:");
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText(x_trans.ToString());
 
-                        richTextBox1.AppendText("\n");
-                    }
+                 richTextBox1.AppendText("\n");
 
-                    */
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText(Xt_x_X.ToString());
 
-                    richTextBox1.AppendText("\n");
-                    var x_trans = X.Transpose();
+                 richTextBox1.AppendText("\n");
 
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Macierz odwrotna");
 
-                    var Xt_x_X = x_trans.Multiply(X);
-
-                    richTextBox1.AppendText("Macierz Transponowana");
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(x_trans.ToString());
-
-                    richTextBox1.AppendText("\n");
-
-                    richTextBox1.AppendText("Macierz transponowana X przemnożona przez macierz X");
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(Xt_x_X.ToString());
-
-
-                    var Xt_x_X_invers = Xt_x_X.Inverse();
-
-                    richTextBox1.AppendText("\n");
-
-                    richTextBox1.AppendText("Macierz odwrotna");
-                    //Xt_x_X_invers.RemoveRow(0);
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(Xt_x_X_invers.ToString());
-
-                    var X_trans_x_Y = x_trans.Multiply(Y);
-
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText("Macierz X transponowana przemnożona przez wektor Y");
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(X_trans_x_Y .ToString());
-
-                    var alfa = Xt_x_X_invers.Multiply(X_trans_x_Y);
-
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText("Współczynniki alfa");
-                    richTextBox1.AppendText("\n");
-                    richTextBox1.AppendText(alfa.ToString());
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText(Xt_x_X_invers.ToString());
 
 
-                    //----------------------------------
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Macierz X transponowana przemnożona przez wektor Y");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.AppendText(X_trans_x_Y.ToString());
 
-                    //Wsadzanie R' do grida w Form1
-                    dataGridR_pi.Columns.Clear();
-                    DataTable dataTable4 = new DataTable();
-                    for(int i = 1; i < headers.Length; i++)
-                    {
-                        dataTable4.Columns.Add(headers[i], typeof(string), null);
-                    }
 
-                    for (int i = 0; i < r_pi.GetLength(0); i++)
-                    {
-                        string[] row = new string[r_pi.GetLength(1)];
-                        for(int j=0; j < r_pi.GetLength(1); j++)
-                        {
-                            row[j] = r_pi[i,j].ToString();
-                        }
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Współczynniki alfa");
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText(alfa.ToString());
 
-                        dataTable4.Rows.Add(row);
-                    }
+                 //-- wyliczenia składnika losowego
+                 dynamic alfa_x_X = 0;
+                 dynamic E = 0;
+                 double suma=Obliczenia.Skladnik_losowy(X, alfa, Y, ref alfa_x_X,ref E);
+               
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Wektor składników losowych");
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText(E.ToString());
 
-                    dataGridR_pi.DataSource = dataTable4;
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Składnik losowy");
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+                 richTextBox1.AppendText(suma.ToString());
+
+
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 10, FontStyle.Bold);
+                 richTextBox1.AppendText("Równanie modelu ekonometrycznego");
+                 richTextBox1.AppendText("\n");
+                 richTextBox1.SelectionFont = new System.Drawing.Font("Tahoma", 8, FontStyle.Regular);
+
+                 richTextBox1.SelectionColor = Color.Red;
+                 richTextBox1.AppendText("y =" + Math.Round(alfa[0], 5) + "+ ");
+                 int kk=0;
+                 for (int i = 1; i <= zwyciezcy.Count; i++)
+                 {
+                        
+                     if (i == zwyciezcy.Count)
+                     {
+                         richTextBox1.AppendText(Math.Round(alfa[i], 5) + "x" + zwyciezcy[kk] + "+ " + Math.Round(suma, 5));
+                     }
+                     else
+                     {
+                         richTextBox1.AppendText(Math.Round(alfa[i], 5) + "x" + zwyciezcy[kk] + "+ ");
+                     }
+                     kk++;
+                 }
+
+
+                 //----------------------------------
+
+                 //Wsadzanie R' do grida w Form1
+                 dataGridR_pi.Columns.Clear();
+                 DataTable dataTable4 = new DataTable();
+                 for(int i = 1; i < headers.Length; i++)
+                 {
+                     dataTable4.Columns.Add(headers[i], typeof(string), null);
+                 }
+
+                 for (int i = 0; i < r_pi.GetLength(0); i++)
+                 {
+                     string[] row = new string[r_pi.GetLength(1)];
+                     for(int j=0; j < r_pi.GetLength(1); j++)
+                     {
+                         row[j] = r_pi[i,j].ToString();
+                     }
+
+                     dataTable4.Rows.Add(row);
+                 }
+
+                 dataGridR_pi.DataSource = dataTable4;
+             
                 }
                 catch (Exception ex)
                 {
