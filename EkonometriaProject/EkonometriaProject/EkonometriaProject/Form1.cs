@@ -185,7 +185,7 @@ namespace EkonometriaProject
 
                     //--Z tablic rozkładu t-Studenta odczytujemy wartość statystyki przy poziomie
                     //--istotności 0,05 oraz n-2
-                    double t_a = Obliczenia.OdczytajT_alfa(daneStat, daneStat[0].Count - 2);
+                    double t_a = Obliczenia.OdczytajT_alfa(daneStat[0].Count - 2);
 
                     //-----wartość krytyczna współczynnika korelacji 
                     double r_alfa = Obliczenia.ObliczR_alfa(t_a, daneStat[0].Count - 2);

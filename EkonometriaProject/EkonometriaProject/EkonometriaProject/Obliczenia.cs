@@ -57,7 +57,7 @@ namespace EkonometriaProject
             return r;
         }
 
-        public static double OdczytajT_alfa(List<List<double>> daneStat, int s_swobody)
+        public static double OdczytajT_alfa(int s_swobody)
         {
             //--Z tablic rozkładu t-Studenta odczytujemy wartość statystyki przy poziomie
             //--istotności 0,05 oraz n-2

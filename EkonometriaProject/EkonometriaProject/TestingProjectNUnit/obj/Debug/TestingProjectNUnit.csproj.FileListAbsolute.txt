@@ -9,3 +9,14 @@ C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\Ekonom
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\obj\Debug\TestingProjectNUnit.csprojResolveAssemblyReference.cache
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\obj\Debug\TestingProjectNUnit.dll
 C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\obj\Debug\TestingProjectNUnit.pdb
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\TestingProjectNUnit.dll
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\TestingProjectNUnit.pdb
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\EkonometriaProject.exe
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\nunit.framework.dll
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\MathNet.Numerics.dll
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\EkonometriaProject.pdb
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\nunit.framework.xml
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\MathNet.Numerics.xml
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\obj\Debug\TestingProjectNUnit.csprojResolveAssemblyReference.cache
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\obj\Debug\TestingProjectNUnit.dll
+C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\obj\Debug\TestingProjectNUnit.pdb
