@@ -28,3 +28,4 @@ C:\Users\mm\Documents\EkonometriaPr\EkonometriaProject\EkonometriaProject\Ekonom
 C:\Users\mm\Documents\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Form1.resources
 C:\Users\mm\Documents\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.Properties.Resources.resources
 C:\Users\mm\Documents\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.csproj.GenerateResource.Cache
+C:\Users\Paweł\Documents\GitRepozytoria\EkonometriaPr\EkonometriaProject\EkonometriaProject\EkonometriaProject\obj\x86\Debug\EkonometriaProject.FormOProgramie.resources

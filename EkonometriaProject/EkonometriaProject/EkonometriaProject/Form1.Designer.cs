@@ -104,8 +104,9 @@
             // oProgramieMenuItem
             // 
             this.oProgramieMenuItem.Name = "oProgramieMenuItem";
-            this.oProgramieMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.oProgramieMenuItem.Size = new System.Drawing.Size(152, 22);
             this.oProgramieMenuItem.Text = "O programie";
+            this.oProgramieMenuItem.Click += new System.EventHandler(this.oProgramieMenuItem_Click);
             // 
             // zaladujPlikFileDialog
             // 
@@ -242,6 +243,7 @@
             this.Controls.Add(this.menuGornyPasek);
             this.MainMenuStrip = this.menuGornyPasek;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ekonometria";
             this.menuGornyPasek.ResumeLayout(false);
             this.menuGornyPasek.PerformLayout();
