@@ -36,18 +36,14 @@
             this.oProgramieMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zaladujPlikFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dataGridDane = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxDane = new System.Windows.Forms.GroupBox();
             this.groupBoxR0 = new System.Windows.Forms.GroupBox();
             this.dataGridR0 = new System.Windows.Forms.DataGridView();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxR = new System.Windows.Forms.GroupBox();
             this.dataGridR = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBoxR_pi = new System.Windows.Forms.GroupBox();
             this.dataGridR_pi = new System.Windows.Forms.DataGridView();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuGornyPasek.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridDane)).BeginInit();
             this.groupBoxDane.SuspendLayout();
@@ -83,15 +79,16 @@
             // zaladujPlikMenuItem
             // 
             this.zaladujPlikMenuItem.Name = "zaladujPlikMenuItem";
-            this.zaladujPlikMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.zaladujPlikMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zaladujPlikMenuItem.Text = "Załaduj plik...";
             this.zaladujPlikMenuItem.Click += new System.EventHandler(this.zaladujPlikMenuItem_Click);
             // 
             // resetujMenuItem
             // 
             this.resetujMenuItem.Name = "resetujMenuItem";
-            this.resetujMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.resetujMenuItem.Size = new System.Drawing.Size(152, 22);
             this.resetujMenuItem.Text = "Resetuj";
+            this.resetujMenuItem.Click += new System.EventHandler(this.resetujMenuItem_Click);
             // 
             // infoMenu
             // 
@@ -104,7 +101,7 @@
             // oProgramieMenuItem
             // 
             this.oProgramieMenuItem.Name = "oProgramieMenuItem";
-            this.oProgramieMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.oProgramieMenuItem.Size = new System.Drawing.Size(141, 22);
             this.oProgramieMenuItem.Text = "O programie";
             this.oProgramieMenuItem.Click += new System.EventHandler(this.oProgramieMenuItem_Click);
             // 
@@ -115,8 +112,6 @@
             // dataGridDane
             // 
             this.dataGridDane.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDane.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
             this.dataGridDane.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridDane.Location = new System.Drawing.Point(3, 16);
             this.dataGridDane.Name = "dataGridDane";
@@ -125,11 +120,6 @@
             this.dataGridDane.Size = new System.Drawing.Size(326, 183);
             this.dataGridDane.TabIndex = 2;
             this.dataGridDane.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDane_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
             // 
             // groupBoxDane
             // 
@@ -154,19 +144,12 @@
             // dataGridR0
             // 
             this.dataGridR0.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridR0.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column2});
             this.dataGridR0.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridR0.Location = new System.Drawing.Point(3, 16);
             this.dataGridR0.Name = "dataGridR0";
             this.dataGridR0.RowHeadersVisible = false;
             this.dataGridR0.Size = new System.Drawing.Size(121, 183);
             this.dataGridR0.TabIndex = 0;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
             // 
             // groupBoxR
             // 
@@ -181,19 +164,12 @@
             // dataGridR
             // 
             this.dataGridR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridR.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column3});
             this.dataGridR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridR.Location = new System.Drawing.Point(3, 16);
             this.dataGridR.Name = "dataGridR";
             this.dataGridR.RowHeadersVisible = false;
             this.dataGridR.Size = new System.Drawing.Size(326, 183);
             this.dataGridR.TabIndex = 0;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
             // 
             // richTextBox1
             // 
@@ -216,19 +192,12 @@
             // dataGridR_pi
             // 
             this.dataGridR_pi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridR_pi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column4});
             this.dataGridR_pi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridR_pi.Location = new System.Drawing.Point(3, 16);
             this.dataGridR_pi.Name = "dataGridR_pi";
             this.dataGridR_pi.RowHeadersVisible = false;
             this.dataGridR_pi.Size = new System.Drawing.Size(326, 183);
             this.dataGridR_pi.TabIndex = 0;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
             // 
             // Form1
             // 
@@ -271,17 +240,13 @@
         private System.Windows.Forms.OpenFileDialog zaladujPlikFileDialog;
         private System.Windows.Forms.DataGridView dataGridDane;
         private System.Windows.Forms.GroupBox groupBoxDane;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.GroupBox groupBoxR0;
         private System.Windows.Forms.DataGridView dataGridR0;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.GroupBox groupBoxR;
         private System.Windows.Forms.DataGridView dataGridR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.GroupBox groupBoxR_pi;
         private System.Windows.Forms.DataGridView dataGridR_pi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
 
     }
 }

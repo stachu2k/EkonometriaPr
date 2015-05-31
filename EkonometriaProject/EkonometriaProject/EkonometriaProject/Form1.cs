@@ -321,7 +321,8 @@ namespace EkonometriaProject
                  }
 
                  dataGridR_pi.DataSource = dataTable4;
-             
+
+                 zaladujPlikMenuItem.Enabled = false;
                 }
                 catch (Exception ex)
                 {
@@ -344,6 +345,35 @@ namespace EkonometriaProject
         {
             FormOProgramie form2 = new FormOProgramie();
             form2.ShowDialog();
+        }
+
+        private void resetujMenuItem_Click(object sender, EventArgs e)
+        {
+            daneStat = null;
+            srednie = null;
+            r0 = null;
+            graf = null;
+            ile_powiazan = null;
+            zwyciezcy = null;
+            r = null;
+            r_pi = null;
+            X = null;
+            Y = null;
+
+            daneStat = new List<List<double>>();
+            srednie = new List<double>();
+            r0 = new List<double>();
+            graf = new List<List<double>>();
+            ile_powiazan = new List<double>();
+            zwyciezcy = new List<int>();
+
+            dataGridDane.Columns.Clear();
+            dataGridR0.Columns.Clear();
+            dataGridR.Columns.Clear();
+            dataGridR_pi.Columns.Clear();
+            richTextBox1.Clear();
+
+            zaladujPlikMenuItem.Enabled = true;
         }
         
     }
