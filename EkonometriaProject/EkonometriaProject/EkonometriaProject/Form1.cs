@@ -343,7 +343,7 @@ namespace EkonometriaProject
         private void oProgramieMenuItem_Click(object sender, EventArgs e)
         {
             FormOProgramie form2 = new FormOProgramie();
-            form2.Show();
+            form2.ShowDialog();
         }
         
     }

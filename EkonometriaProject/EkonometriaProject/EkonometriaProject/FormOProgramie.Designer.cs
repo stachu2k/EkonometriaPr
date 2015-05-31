@@ -75,10 +75,12 @@
             this.Controls.Add(this.labelCredits);
             this.Controls.Add(this.buttonOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormOProgramie";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "O programie";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCredits)).EndInit();
             this.ResumeLayout(false);
