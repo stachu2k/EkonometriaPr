@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\TestingProjectNUnit.dll" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-05-30" time="15:08:59">
+<test-results name="C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\TestingProjectNUnit.dll" total="7" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-05-31" time="19:21:44">
   <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\packages\NUnit.Runners.2.6.4\tools" machine-name="STACHU" user="Paweł" user-domain="stachu" />
   <culture-info current-culture="pl-PL" current-uiculture="pl-PL" />
-  <test-suite type="Assembly" name="C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\TestingProjectNUnit.dll" executed="True" result="Success" success="True" time="0.144" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\Paweł\Documents\Visual Studio 2010\Projects\EkonometriaPr\EkonometriaProject\EkonometriaProject\TestingProjectNUnit\bin\Debug\TestingProjectNUnit.dll" executed="True" result="Success" success="True" time="0.107" asserts="0">
     <results>
-      <test-suite type="Namespace" name="TestingProjectNUnit" executed="True" result="Success" success="True" time="0.136" asserts="0">
+      <test-suite type="Namespace" name="TestingProjectNUnit" executed="True" result="Success" success="True" time="0.100" asserts="0">
         <results>
-          <test-suite type="TestFixture" name="Class1" executed="True" result="Success" success="True" time="0.135" asserts="0">
+          <test-suite type="TestFixture" name="Class1" executed="True" result="Success" success="True" time="0.099" asserts="0">
             <results>
-              <test-case name="TestingProjectNUnit.Class1.TestObliczeniaKorelacjaR" executed="True" result="Success" success="True" time="0.098" asserts="1" />
+              <test-case name="TestingProjectNUnit.Class1.TestObliczeniaIle_powiazan" executed="True" result="Success" success="True" time="0.029" asserts="2" />
+              <test-case name="TestingProjectNUnit.Class1.TestObliczeniaIle_X_o_max_powiazan" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="TestingProjectNUnit.Class1.TestObliczeniaKorelacjaR" executed="True" result="Success" success="True" time="0.035" asserts="1" />
               <test-case name="TestingProjectNUnit.Class1.TestObliczeniaKorelacjaR0" executed="True" result="Success" success="True" time="0.001" asserts="1" />
               <test-case name="TestingProjectNUnit.Class1.TestObliczeniaObliczR_alfa" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-              <test-case name="TestingProjectNUnit.Class1.TestObliczeniaOdczytajT_alfa" executed="True" result="Success" success="True" time="0.008" asserts="1" />
+              <test-case name="TestingProjectNUnit.Class1.TestObliczeniaOdczytajT_alfa" executed="True" result="Success" success="True" time="0.006" asserts="1" />
               <test-case name="TestingProjectNUnit.Class1.TestObliczeniaSrednia" executed="True" result="Success" success="True" time="0.001" asserts="1" />
             </results>
           </test-suite>
